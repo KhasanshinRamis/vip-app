@@ -5,6 +5,8 @@ import { TanstackProvider } from '@/providers/TanstackProvider';
 import { auth } from '@/auth';
 import { SessionProvider } from 'next-auth/react';
 import { Toaster } from '@/components/ui/sonner';
+import { Navbar } from '@/components/layout/navbar';
+import { cn } from '@/lib/utils';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,11 +24,12 @@ export default async function RootLayout({
 
 	return (
 		<html lang="en">
-			<body className={inter.className}>
+			<body className={cn(inter.className, 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800')}>
 				<TanstackProvider>
 					<SessionProvider session={session}>
 						<Toaster />
-						{children}
+						<Navbar />
+							{children}
 					</SessionProvider>
 				</TanstackProvider>
 			</body>
