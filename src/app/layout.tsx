@@ -23,17 +23,16 @@ export default async function RootLayout({
 	const session = await auth();
 
 	return (
-		<html lang="en">
-			<body className={cn(inter.className, 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800')}>
+		<html lang="ru">
+			<body className={cn(inter.className, 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 bg-fixed bg-cover')}>
 				<TanstackProvider>
 					<SessionProvider session={session}>
 						<Toaster />
 						<Navbar />
-							{children}
+						{children}
 					</SessionProvider>
 				</TanstackProvider>
 			</body>
-
 		</html>
 	);
 }

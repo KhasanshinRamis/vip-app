@@ -1,6 +1,6 @@
 import authConfig from "@/auth.config";
 import NextAuth from 'next-auth';
-import { DEFAULT_LOGIN_REDIRECT, apiAuthPrefix, authRoutes, publicRoutes } from '@/routes';
+import { DEFAULT_LOGIN_REDIRECT, apiAuthPrefix, apiPrefix, authRoutes, publicRoutes } from '@/routes';
 import { NextResponse } from 'next/server';
 
 
@@ -15,12 +15,14 @@ export default auth((req) => {
 
 	// не нужно защищать айпи запросы
 	const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+	const isApiRoute = apiPrefix.includes(nextUrl.pathname);
 	const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
 	const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-	if (isApiAuthRoute) {
+	if (isApiAuthRoute || isApiRoute) {
 		return NextResponse.next();
 	};
+
 
 	if (isAuthRoute) {
 		if (isLoggedIn) return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));

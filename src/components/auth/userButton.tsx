@@ -25,13 +25,23 @@ export const UserButton = () => {
 			<DropdownMenuContent className='w-40' align='end'>
 				<DropdownMenuItem>
 					<Link href='/profile'>
-						Profile	
+						Пройиль
 					</Link>
 				</DropdownMenuItem>
-				<LogoutButton>					
+				<DropdownMenuItem>
+					<Link href='/service'>
+						Настройки
+					</Link>
+				</DropdownMenuItem>
+				<DropdownMenuItem>
+					<Link href='/service'>
+						Новая запись
+					</Link>
+				</DropdownMenuItem>
+				<LogoutButton>
 					<DropdownMenuItem>
 						<ExitIcon className='h-4 w-4 mr-2' />
-						Logout
+						Выйти
 					</DropdownMenuItem>
 				</LogoutButton>
 			</DropdownMenuContent>

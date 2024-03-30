@@ -31,6 +31,12 @@ export const authRoutes = [
 
 export const apiAuthPrefix = '/api/auth';
 
+
+export const apiPrefix = [
+	'/api/categories'
+];
+
+
 /**
 * Путь перенаправления по умолчанию после входа в систему
 * @type {string}

@@ -1,46 +1,29 @@
+'use client';
+
+import * as React from "react";
+import Autoplay from "embla-carousel-autoplay";
+
+import { Card, CardContent } from "@/components/ui/card"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { useRef } from 'react';
+import Image from 'next/image';
+
 
 
 export const Feature = () => {
 	return (
-	// 	<div
-	// 		className={styles.container}
-	// 	>
-	// 		<h1 
-	// 			className={styles.title}
-	// 		>
-	// 			<b className={styles.bold}>Добро пожаловать в наш блог по эстетике!</b><br/>Наслаждайтесь историями и творческими идеями.
-	// 		</h1>
-	// 		<div 
-	// 			className={styles.post}
-	// 		>
-	// 			<div
-	// 				className={styles.imgContainer}
-	// 			>
-	// 				<Image 
-	// 					src='/p1.jpg' 
-	// 					alt='Nature' 
-	// 					fill
-	// 					className={styles.image}
-	// 				/>
-	// 			</div>
-
-	// 			<div
-	// 				className={styles.textContainer}
-	// 			>
-	// 				<h1 className={styles.postTitle}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus, vitae.</h1>
-	// 				<p className={styles.postDescription}>
-	// 					Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-	// 					Ea suscipit ullam reprehenderit ut odit quis. Quam, expedita labore.
-	// 					Ratione doloribus dignissimos rem, et odio placeat facilis sunt reiciendis dolorem?
-	// 					Inventore.
-	// 				</p>
-	// 				<button className={styles.button}>Read More</button>
-	// 			</div>
-	// 		</div>
-	// 	</div>
-	// )
-		<div>
-			Feature
+		<div className='grid grid-cols-[720px_1fr] gap-x-8 items-center'>
+			<Image
+				src='/img6.jpg'
+				alt='Oooops...'
+				width={720}
+				height={480}
+				className='shadow-md'
+			/>
+			<div className='grid gap-y-8'>
+				<h2 className='text-2xl font-medium text-slate-200'>Наслаждайтесь историями и творческими идеями.</h2>
+				<p className='text-xl font-normal text-slate-300'>Делитесь своими взглядами, открывайте себе новые возможности и будьте на одной волне с обществом нашего блога</p>
+			</div>
 		</div>
-	)
-};
+	);
+}

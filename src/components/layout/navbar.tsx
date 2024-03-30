@@ -15,9 +15,6 @@ export const Navbar = () => {
 	const session = useSession();
 	const router = useRouter();
 
-	const onClick = (redirect: string) => {
-		redirect === 'write' ? router.push('/write') : router.push('/')
-	}
 
 	console.log(session.status);
 	console.log(session.status === 'unauthenticated')

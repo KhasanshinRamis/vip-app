@@ -1,0 +1,47 @@
+.style:hover {
+	background-color: #7e8899; /* Чуть темнее цвета по умолчанию */
+  }
+  
+  .fashion:hover {
+	background-color: #7f73e9; /* Чуть темнее цвета по умолчанию */
+  }
+  
+  .food:hover {
+	background-color: #c0c6cd; /* Чуть светлее цвета по умолчанию */
+  }
+  
+  .travel:hover {
+	background-color: #6c6c6c;
+  }
+
+
+  .culture:hover {
+	background-color: #ff9e3e; /* Чуть темнее цвета по умолчанию */
+  }
+  
+  .coding:hover {
+	background-color: #0c5ab6; /* Станет темнее цвета по умолчанию */
+}
+
+.style {
+	background-color: #98a2b3; /* Чуть темнее цвета по умолчанию */
+  }
+  
+  .fashion {
+	background-color: #9b8afb; /* Чуть темнее цвета по умолчанию */
+  }
+  
+  .food {
+	background-color: #d0d5dd; /* Чуть светлее цвета по умолчанию */
+}
+  
+  .travel {
+	background-color: #ffb04f45
+}
+  .culture {
+	background-color: #ffb04f57; /* Чуть темнее цвета по умолчанию */
+  }
+  
+  .coding {
+	background-color: #1570ef; /* Станет темнее цвета по умолчанию */
+}
