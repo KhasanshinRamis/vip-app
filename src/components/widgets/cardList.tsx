@@ -5,8 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BeatLoader } from 'react-spinners';
 import { IPost } from '@/interfaces/post.interface';
-import { Card, CardContent, CardTitle, CardDescription } from '../ui/card';
 import postService from '@/services/postService';
+import { Pagination } from '@/components/widgets/pagination';
 
 interface CardListProps {
 	page: number;
@@ -18,16 +18,15 @@ export const CardList = ({ page, category }: CardListProps) => {
 	const POST_PER_PAGE = 4;
 
 	const { data: postsData, isLoading, isSuccess } = useQuery({
-		queryKey: ['posts'],
+		queryKey: ['posts', `page=${page}`],
 		queryFn: () => postService.getAll(page, category),
 		select: ({ data }) => data,
 	});
-	
+
 
 	const hasPrev = POST_PER_PAGE * (page - 1) > 0;
 	const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < postsData?.count;
 
-	postsData
 
 	return (
 		<div>
@@ -59,6 +58,7 @@ export const CardList = ({ page, category }: CardListProps) => {
 					</div>
 				))}
 			</div>}
+			<Pagination hasNext={hasNext} hasPrev={hasPrev} page={page} />
 		</div>
 	)
 }
