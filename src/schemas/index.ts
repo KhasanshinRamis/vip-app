@@ -1,6 +1,16 @@
 import { UserRole } from '@prisma/client';
 import * as z from "zod";
 
+const MAX_FILE_SIZE = 1024 * 1024 * 30;
+const ACCEPTED_IMAGE_MIME_TYPES = [
+	"image/jpeg",
+	"image/jpg",
+	"image/png",
+	"image/webp",
+];
+const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
+
+
 export const LoginSchema = z.object({
 	email: z.string().email({
 		message: "Email is required",
@@ -61,3 +71,11 @@ export const SettingsSchema = z.object({
 	path: ['Password']
 });
 
+export const NewPostSchema = z.object({
+	title: z.string().min(1, { message: "Поле пустое!" }),
+	category: z.enum(['style', 'fashion', 'food', 'culture', 'travel', 'coding'], {
+		required_error: 'Выберите категорию!',
+	}),
+	image: z.optional(z.string()),
+	description: z.string().min(1, { message: "Поле пустое!" }),
+});

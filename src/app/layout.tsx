@@ -7,6 +7,7 @@ import { SessionProvider } from 'next-auth/react';
 import { Toaster } from '@/components/ui/sonner';
 import { Navbar } from '@/components/layout/navbar';
 import { cn } from '@/lib/utils';
+import { Footer } from '@/components/layout/footer';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default async function RootLayout({
 						<Toaster />
 						<Navbar />
 						{children}
+						<Footer />
 					</SessionProvider>
 				</TanstackProvider>
 			</body>

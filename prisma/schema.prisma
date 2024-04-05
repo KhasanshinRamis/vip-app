@@ -44,8 +44,6 @@ model User {
     role                  UserRole               @default(USER)
     accounts              Account[]
     twoFactorConfirmation TwoFactorConfirmation?
-    Post                  Post[]
-    Comment               Comment[]
 }
 
 model VerificationToken {
@@ -85,34 +83,33 @@ model TwoFactorConfirmation {
 }
 
 model Category {
-    id    String  @id @default(cuid()) @map("_id")
+    id    String  @id @default(cuid())
     slug  String  @unique
     title String
     img   String?
-    Posts Post[]
+    Post  Post[]
 }
 
 model Post {
-    id           String    @id @default(cuid()) @map("_id")
+    id           String    @id @default(cuid())
     createdAt    DateTime  @default(now())
     slug         String    @unique
     title        String
     description  String
     img          String?
+    userId       String
     views        Int       @default(0)
+    categoryId   String
     categorySlug String
-    category     Category  @relation(fields: [categorySlug], references: [slug])
-    userEmail    String
-    user         User      @relation(fields: [userEmail], references: [email])
+    category     Category  @relation(fields: [categoryId], references: [id])
     comments     Comment[]
 }
 
 model Comment {
-    id          String   @id @default(cuid()) @map("_id")
+    id          String   @id @default(cuid())
     createdAt   DateTime @default(now())
     description String
-    userEmail   String
-    user        User     @relation(fields: [userEmail], references: [email])
+    userId      String
     postSlug    String
     post        Post     @relation(fields: [postSlug], references: [slug])
 }

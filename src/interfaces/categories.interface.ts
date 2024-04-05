@@ -1,11 +1,10 @@
-import { Post } from './post.interface';
+import { IPost } from './post.interface';
 
 export interface ICategory {
-	map(arg0: (category: ICategory) => import("react").JSX.Element): import("react").ReactNode;
-	_id: string;
+	id: string;
     slug: string;
     title: string;
     img: string;
-    Posts: Post[];
+    Posts: IPost[];
 }
 

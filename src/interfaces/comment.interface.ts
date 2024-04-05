@@ -1,7 +1,7 @@
 import { IUser } from './user.interface';
 
 export interface IComment {
-    _id: string;
+    id: string;
     createdAt: number; 
     description: string;
     userEmail: string;

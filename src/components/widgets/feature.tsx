@@ -22,7 +22,7 @@ export const Feature = () => {
 			/>
 			<div className='grid gap-y-8'>
 				<h2 className='text-2xl font-medium text-slate-200'>Наслаждайтесь историями и творческими идеями.</h2>
-				<p className='text-xl font-normal text-slate-300'>Делитесь своими взглядами, открывайте себе новые возможности и будьте на одной волне с обществом нашего блога</p>
+				<p className='text-xl font-normal text-slate-300'>Делитесь своими взглядами, открывайте себе новые возможности и будьте на одной волне с обществом нашего блога.</p>
 			</div>
 		</div>
 	);

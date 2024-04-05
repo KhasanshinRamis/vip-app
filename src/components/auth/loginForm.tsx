@@ -58,7 +58,7 @@ export const LoginForm = () => {
 			if (callbackUrl) {
 				router.push(callbackUrl);
 			} else {
-				router.push(`/settings`);
+				router.push(`/profile`);
 			}
 		},
 		onError: (error: any) => {

@@ -21,8 +21,8 @@ export const Navbar = () => {
 
 	if (session.status === 'authenticated') {
 		return (
-			<nav className='grid grid-flow-col grid-cols-[1fr_40px] gap-x-2 items-center w-full p-4'>
-				<div className='grid grid-flow-col grid-cols-[1fr_200px] px-4'>
+			<nav className='grid grid-flow-col grid-cols-[1fr_40px] gap-x-2 items-center w-full py-6 px-24'>
+				<div className='grid grid-flow-col items-center grid-cols-[1fr_200px]'>
 					<Link href='/'>
 						<h1
 							className='text-3xl font-semibold text-white cursor-pointer'
@@ -42,7 +42,7 @@ export const Navbar = () => {
 	} else if (session.status === 'unauthenticated') {
 		return (
 
-			<nav className='grid grid-flow-col grid-cols-[1fr_120px] gap-x-2 items-center w-full p-4'>
+			<nav className='grid grid-flow-col grid-cols-[1fr_120px] gap-x-2 items-center w-full py-6 px-24'>
 				<div className='grid justify-start px-4'>
 					<Link href='/'>
 						<h1

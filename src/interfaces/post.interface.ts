@@ -4,7 +4,7 @@ import { IUser } from './user.interface';
 export interface IPost {
 	posts: any;
 	count: any;
-	_id: string;
+	id: string;
     createdAt: string;
     slug: string;
     title: string;

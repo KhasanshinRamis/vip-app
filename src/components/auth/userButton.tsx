@@ -25,7 +25,7 @@ export const UserButton = () => {
 			<DropdownMenuContent className='w-40' align='end'>
 				<DropdownMenuItem>
 					<Link href='/profile'>
-						Пройиль
+						Профиль
 					</Link>
 				</DropdownMenuItem>
 				<DropdownMenuItem>
