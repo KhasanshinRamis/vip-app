@@ -26,12 +26,12 @@ export const CategoryList = () => {
 		<div>
 			<h2 className='text-2xl font-medium text-slate-200'>Категории:</h2>
 			{isLoading && <div className='grid justify-center'><BeatLoader className='grid grid-flow-col mt-6' /></div>}
-			{isSuccess && <div className='grid grid-cols-6 gap-x-4 justify-evenly justify-self-center items-center mt-6'>
+			{isSuccess && <div className='grid grid-cols-6 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 justify-evenly justify-self-center items-center mt-6'>
 				{Array.isArray(categoriesData) && categoriesData.map((category: ICategory) => (
 					<Link
 						key={category.id}
 						href={`/blog?category=${category.slug}`}
-						className={cn(styles[category.slug], 'grid grid-cols-[32px_1fr] gap-x-2 justify-center items-center text-center h-[60px] capitalize rounded-[10px] shadow-md pl-2')}
+						className={cn(styles[category.slug], 'grid grid-cols-[32px_1fr] gap-x-2 justify-center items-center text-center h-[60px] capitalize rounded-[10px] shadow-md pl-2 text-indigo-950')}
 					>
 						{category.img &&
 							<Image

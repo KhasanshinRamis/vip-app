@@ -44,17 +44,17 @@ export const POST = async (req: NextRequest) => {
 			const twoFactorToken = await getTwoFactorTokenByEmail(existingUser.email);
 
 			if (!twoFactorToken) {
-				return NextResponse.json({ error: "Invalid code!" }, { status: 401, statusText: 'Invalid code!' });
+				return NextResponse.json({ error: "Неверный код!" }, { status: 401, statusText: 'Invalid code!' });
 			}
 
 			if (twoFactorToken.token !== code) {
-				return NextResponse.json({ error: "Invalid code!" }, { status: 401, statusText: 'Invalid code!' });
+				return NextResponse.json({ error: "Неверный код!" }, { status: 401, statusText: 'Invalid code!' });
 			}
 
 			const hasExpired = new Date(twoFactorToken.expires) < new Date();
 
 			if (hasExpired) {
-				return NextResponse.json({ error: "Code expired!" }, { status: 401, statusText: 'Invalid code!' });
+				return NextResponse.json({ error: "Срок действия кода истек!" }, { status: 401, statusText: 'Invalid code!' });
 			};
 
 			const hasTwoFactorToken = await db.twoFactorToken.findFirst({
@@ -85,7 +85,7 @@ export const POST = async (req: NextRequest) => {
 			const twoFactorToken = await generateTwoFactorToken(existingUser.email);
 			await sendTwoFactorTokenEmail(twoFactorToken.email, twoFactorToken.token);
 
-			return NextResponse.json({ twoFactor: true, success: 'Send 2FA' }, { status: 200, statusText: 'Send 2FA' });
+			return NextResponse.json({ twoFactor: true, success: 'Отправить 2FA' }, { status: 200, statusText: 'Send 2FA' });
 		}
 	};
 
@@ -99,9 +99,9 @@ export const POST = async (req: NextRequest) => {
 		if (error instanceof AuthError) {
 			switch (error.type) {
 				case "CredentialsSignin":
-					return NextResponse.json({ error: "Invalid credentials!" }, { status: 401, statusText: "Invalid credentials!" });
+					return NextResponse.json({ error: "Неверные учетные данные!" }, { status: 401, statusText: "Invalid credentials!" });
 				default:
-					return NextResponse.json({ error: "Something went wrong!" }, { status: 401, statusText: "Something went wrong!" });
+					return NextResponse.json({ error: "Что-то пошло не так..." }, { status: 401, statusText: "Something went wrong!" });
 			}
 		}
 

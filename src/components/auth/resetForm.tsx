@@ -62,48 +62,50 @@ export const ResetForm = () => {
 
 
 	return (
-		<CardWrapper
-			headerLabel='Forgot your password?'
-			backButtonLabel='Back to login'
-			backButtonHref='/auth/login'
-		>
-			<Form {...form}>
-				<form
-					onSubmit={form.handleSubmit(onSubmit)}
-					className='space-y-6'
-				>
-					<div className='space-y-4'>
-						<FormField
-							control={form.control}
-							name='email'
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Email</FormLabel>
-									<FormControl>
-										<Input
-											{...field}
-											disabled={mutation.isPending}
-											placeholder='ivanovivan@example.com'
-											type='email'
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-					</div>
-					<FormError message={error} />
-					<FormSuccess message={success} />
-					<Button
-						type='submit'
-						disabled={mutation.isPending}
-						className='w-full'
+		<div className='grid min-h-screen justify-center items-center'>
+			<CardWrapper
+				headerLabel='Забыли свой пароль?'
+				backButtonLabel='Вернуться к входу в систему'
+				backButtonHref='/auth/login'
+			>
+				<Form {...form}>
+					<form
+						onSubmit={form.handleSubmit(onSubmit)}
+						className='space-y-6'
 					>
-						Send reset email
-					</Button>
-				</form>
-			</Form>
-		</CardWrapper>
+						<div className='space-y-4'>
+							<FormField
+								control={form.control}
+								name='email'
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Email</FormLabel>
+										<FormControl>
+											<Input
+												{...field}
+												disabled={mutation.isPending}
+												placeholder='ivanovivan@example.com'
+												type='email'
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+						<FormError message={error} />
+						<FormSuccess message={success} />
+						<Button
+							type='submit'
+							disabled={mutation.isPending}
+							className='w-full'
+						>
+							Отправить сброс пароля в email
+						</Button>
+					</form>
+				</Form>
+			</CardWrapper>
+		</div>
 	);
 };
 

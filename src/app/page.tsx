@@ -2,14 +2,14 @@ import { CategoryList } from '@/components/widgets/categoryList';
 import { CardList } from '@/components/widgets/cardList';
 import { Feature } from '@/components/widgets/feature';
 
-export default function Home({ searchParams }:any) {
+export default function Home({ searchParams }: any) {
 	const page = parseInt(searchParams.page) || 1;
-	
+
 	return (
-		<main className='grid items-center justify-center py-6 gap-y-12 px-24'>
+		<main className='grid items-center justify-center py-6 gap-y-12 px-24 sm:px-4'>
 			<Feature />
 			<CategoryList />
-			<CardList page={page}/>
+			<CardList page={page} />
 		</main>
 	);
 }

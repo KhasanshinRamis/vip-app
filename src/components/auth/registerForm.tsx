@@ -62,83 +62,85 @@ export const RegisterForm = () => {
 	}
 
 	return (
-		<CardWrapper
-			headerLabel='Create an account'
-			backButtonLabel='Already have an account?'
-			backButtonHref='/auth/login'
-			showSocial
-		>
-			<Form {...form}>
-				<form
-					onSubmit={form.handleSubmit(onSubmit)}
-					className='space-y-6'
-				>
-					<div className='space-y-4'>
-						<FormField
-							control={form.control}
-							name='name'
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Name</FormLabel>
-									<FormControl>
-										<Input
-											{...field}
-											disabled={mutation.isPending}
-											placeholder='Ivanov Ivan'
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
-							name='email'
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Email</FormLabel>
-									<FormControl>
-										<Input
-											{...field}
-											disabled={mutation.isPending}
-											placeholder='ivanovivan@example.com'
-											type='email'
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
-							name='password'
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Password</FormLabel>
-									<FormControl>
-										<Input
-											{...field}
-											disabled={mutation.isPending}
-											placeholder='******'
-											type='password'
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-					</div>
-					<FormError message={error} />
-					<FormSuccess message={success} />
-					<Button
-						type='submit'
-						disabled={mutation.isPending}
-						className='w-full'
+		<div className='grid min-h-screen justify-center items-center'>
+			<CardWrapper
+				headerLabel='Создать учетную запись'
+				backButtonLabel='У вас уже есть учетная запись?'
+				backButtonHref='/auth/login'
+				showSocial
+			>
+				<Form {...form}>
+					<form
+						onSubmit={form.handleSubmit(onSubmit)}
+						className='space-y-6'
 					>
-						Create an account
-					</Button>
-				</form>
-			</Form>
-		</CardWrapper>
-	)
-}
+						<div className='space-y-4'>
+							<FormField
+								control={form.control}
+								name='name'
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>ФИО</FormLabel>
+										<FormControl>
+											<Input
+												{...field}
+												disabled={mutation.isPending}
+												placeholder='Ivanov Ivan'
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name='email'
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Email</FormLabel>
+										<FormControl>
+											<Input
+												{...field}
+												disabled={mutation.isPending}
+												placeholder='ivanovivan@example.com'
+												type='email'
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name='password'
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Пароль</FormLabel>
+										<FormControl>
+											<Input
+												{...field}
+												disabled={mutation.isPending}
+												placeholder='******'
+												type='password'
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+						<FormError message={error} />
+						<FormSuccess message={success} />
+						<Button
+							type='submit'
+							disabled={mutation.isPending}
+							className='w-full'
+						>
+							Зарегистрироваться
+						</Button>
+					</form>
+				</Form>
+			</CardWrapper>
+		</div>
+	);
+};

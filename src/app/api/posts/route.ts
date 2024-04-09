@@ -34,24 +34,20 @@ export const GET = async (req: NextRequest) => {
 export const POST = async (req: NextRequest) => {
 	try {
 		const user = await currentUser();
+		const body = await req.json();
+		var post;
+
 
 		if (!user) {
-			return NextResponse.json({ error: "Not Authenticated!" }, { status: 401 });
+			return NextResponse.json({ error: "Необходимо авторизоваться" }, { status: 401 });
 		}
 
-
-		const body = await req.json();
-		
-
-		console.log('body:', body);
 
 		const catSlug = await db.category.findFirst({
 			where: { slug: body.category }
 		})
 
-		console.log(catSlug);
 
-		var post;
 
 		if (user.id && catSlug?.id) {
 			post = await db.post.create({
@@ -66,9 +62,6 @@ export const POST = async (req: NextRequest) => {
 				},
 			});
 		}
-
-
-		console.log(post);
 
 
 		return NextResponse.json(post, { status: 200 });

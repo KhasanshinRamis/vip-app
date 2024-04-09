@@ -7,14 +7,16 @@ import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 
 export const ErrorCard = () => {
 	return (
-		<CardWrapper
-			headerLabel='Oooops! Something went wrong!'
-			backButtonLabel='Back to login'
-			backButtonHref='/auth/login'
-		>
-			<div className='w-full grid justify-center items-center'>
-				<ExclamationTriangleIcon className='text-destructive' />
-			</div>
-		</CardWrapper>
+		<div className='grid min-h-screen justify-center items-center'>
+			<CardWrapper
+				headerLabel='Оооопс! Что-то пошло не так!'
+				backButtonLabel='Вернуться к входу в систему'
+				backButtonHref='/auth/login'
+			>
+				<div className='w-full grid justify-center items-center'>
+					<ExclamationTriangleIcon className='text-destructive' />
+				</div>
+			</CardWrapper>
+		</div >
 	);
 };

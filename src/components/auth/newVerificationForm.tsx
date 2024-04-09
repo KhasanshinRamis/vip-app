@@ -25,50 +25,53 @@ export const NewVerificationForm = () => {
 
 	const query = async (token: string | null): Promise<AxiosResponse<string | null, any>> => {
 		if (!token) {
-		  return Promise.reject(new Error('Invalid token'));
+			return Promise.reject(new Error('Недопустимый токен!'));
 		}
-		
+
 		try {
-		  const response = await verificationService.create(token);
-		  return response;
+			const response = await verificationService.create(token);
+			return response;
 		} catch (error) {
-		  return Promise.reject(error);
+			return Promise.reject(error);
 		}
-	  };
-	  
-	  const mutation = useMutation({
+	};
+
+	const mutation = useMutation({
 		mutationKey: ['verification', token],
 		mutationFn: query,
 		onSuccess: (data: any) => {
-		  console.log('Success!', data);
-		  setSuccess(data.data.success);
+			console.log('Success!', data);
+			setSuccess(data.data.success);
 		},
 		onError: (error: any) => {
-		  setError(error.response?.data?.error || 'An error occurred');
-		  console.log(error.message);
+			setError(error.response?.data?.error || 'Произошла ошибка');
+			console.log(error.message);
 		}
-	  });
+	});
 
 
-	  useEffect(() => {
+	useEffect(() => {
 		mutation.mutate(token);
-	  }, []);
-	  
+	}, []);
+
 	return (
-		<CardWrapper
-			headerLabel="Confirming your verification"
-			backButtonLabel="Back to login"
-			backButtonHref="/auth/login"
-		>
-			<div className="flex items-center w-full justify-center">
-				{!success && !error && (
-					<BeatLoader />
-				)}
-				<FormSuccess message={success} />
-				{!success && (
-					<FormError message={error} />
-				)}
-			</div>
-		</CardWrapper>
-	)
-}
+		<div className='grid min-h-screen justify-center items-center'>
+
+			<CardWrapper
+				headerLabel="Подтверждение вашей верификации"
+				backButtonLabel="Вернуться к входу в систему"
+				backButtonHref="/auth/login"
+			>
+				<div className="flex items-center w-full justify-center">
+					{!success && !error && (
+						<BeatLoader />
+					)}
+					<FormSuccess message={success} />
+					{!success && (
+						<FormError message={error} />
+					)}
+				</div>
+			</CardWrapper>
+		</div>
+	);
+};

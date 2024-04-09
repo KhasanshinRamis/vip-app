@@ -15,7 +15,7 @@ export const POST = async (req: NextRequest) => {
 		const validatedFields = RegisterSchema.safeParse(body);
 
 		if (!validatedFields.success) {
-			return NextResponse.json({ error: 'Invalidated!'}, { status: 401, statusText: 'Invalidated!' });
+			return NextResponse.json({ error: 'Неверные поля!' }, { status: 401, statusText: 'Invalidated!' });
 		};
 
 		const { email, password, name } = validatedFields.data;
@@ -23,7 +23,7 @@ export const POST = async (req: NextRequest) => {
 		const existingUser = await getUserByEmail(email);
 
 		if (existingUser) {
-			return NextResponse.json({ error: 'Email already in use!'}, {  status: 401, statusText: 'Email already in use!'});
+			return NextResponse.json({ error: 'Электронная почта уже используется!' }, { status: 401, statusText: 'Email already in use!' });
 		};
 
 		await db.user.create({
@@ -35,14 +35,13 @@ export const POST = async (req: NextRequest) => {
 			}
 		})
 
-		
+
 		const verificationToken = await generateVerificationToken(email);
 		await sendVerificationEmail(verificationToken.email, verificationToken.token);
 
 
-		console.log('Confirmation email sent!');
-		console.log(verificationToken);
-		return NextResponse.json({success: 'Success! User create!'}, { status: 200 });;
+		console.log('Confirmation email sent!', verificationToken);
+		return NextResponse.json({ success: 'Подтверждение отправлено по электронной почте!' }, { status: 200 });;
 
 	} catch (error: any) {
 		return NextResponse.json({ error: error.message }, { status: 500 });

@@ -65,47 +65,49 @@ export const NewPasswordForm = () => {
 
 
 	return (
-		<CardWrapper
-			headerLabel='Enter a new password'
-			backButtonLabel='Back to login'
-			backButtonHref='/auth/login'
-		>
-			<Form {...form}>
-				<form
-					onSubmit={form.handleSubmit(onSubmit)}
-					className='space-y-6'
-				>
-					<div className='space-y-4'>
-						<FormField
-							control={form.control}
-							name='password'
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Password</FormLabel>
-									<FormControl>
-										<Input
-											{...field}
-											disabled={mutation.isPending}
-											placeholder='******'
-											type='password'
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-					</div>
-					<FormError message={error} />
-					<FormSuccess message={success} />
-					<Button
-						type='submit'
-						disabled={mutation.isPending}
-						className='w-full'
+		<div className='grid min-h-screen justify-center items-center'>
+			<CardWrapper
+				headerLabel='Введите новый пароль'
+				backButtonLabel='Вернуться к входу в систему'
+				backButtonHref='/auth/login'
+			>
+				<Form {...form}>
+					<form
+						onSubmit={form.handleSubmit(onSubmit)}
+						className='space-y-6'
 					>
-						Reset password
-					</Button>
-				</form>
-			</Form>
-		</CardWrapper>
+						<div className='space-y-4'>
+							<FormField
+								control={form.control}
+								name='password'
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Пароль</FormLabel>
+										<FormControl>
+											<Input
+												{...field}
+												disabled={mutation.isPending}
+												placeholder='******'
+												type='password'
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+						<FormError message={error} />
+						<FormSuccess message={success} />
+						<Button
+							type='submit'
+							disabled={mutation.isPending}
+							className='w-full'
+						>
+							Сброс пароля
+						</Button>
+					</form>
+				</Form>
+			</CardWrapper>
+		</div>
 	);
 };

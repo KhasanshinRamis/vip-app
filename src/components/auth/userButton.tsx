@@ -13,38 +13,40 @@ export const UserButton = () => {
 	const user = useCurrentUser();
 
 	return (
-		<DropdownMenu>
-			<DropdownMenuTrigger>
-				<Avatar>
-					<AvatarImage src={user?.image || ''} alt='avatar image' />
-					<AvatarFallback className='bg-sky-500'>
-						<FaUser className='text-white' />
-					</AvatarFallback>
-				</Avatar>
-			</DropdownMenuTrigger>
-			<DropdownMenuContent className='w-40' align='end'>
-				<DropdownMenuItem>
-					<Link href='/profile'>
-						Профиль
-					</Link>
-				</DropdownMenuItem>
-				<DropdownMenuItem>
-					<Link href='/service'>
-						Настройки
-					</Link>
-				</DropdownMenuItem>
-				<DropdownMenuItem>
-					<Link href='/service'>
-						Новая запись
-					</Link>
-				</DropdownMenuItem>
-				<LogoutButton>
+		<div className='grid items-center'>
+			<DropdownMenu>
+				<DropdownMenuTrigger>
+					<Avatar>
+						<AvatarImage src={user?.image || ''} alt='avatar image' />
+						<AvatarFallback className='bg-sky-500'>
+							<FaUser className='text-white' />
+						</AvatarFallback>
+					</Avatar>
+				</DropdownMenuTrigger>
+				<DropdownMenuContent className='w-40' align='end'>
 					<DropdownMenuItem>
-						<ExitIcon className='h-4 w-4 mr-2' />
-						Выйти
+						<Link href='/profile'>
+							Профиль
+						</Link>
 					</DropdownMenuItem>
-				</LogoutButton>
-			</DropdownMenuContent>
-		</DropdownMenu>
+					<DropdownMenuItem>
+						<Link href='/write'>
+							Новая запись
+						</Link>
+					</DropdownMenuItem>
+					<DropdownMenuItem>
+						<Link href='/settings'>
+							Настройки
+						</Link>
+					</DropdownMenuItem>
+					<LogoutButton>
+						<DropdownMenuItem>
+							<ExitIcon className='h-4 w-4 mr-2' />
+							Выйти
+						</DropdownMenuItem>
+					</LogoutButton>
+				</DropdownMenuContent>
+			</DropdownMenu>
+		</div>
 	)
 };

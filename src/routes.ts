@@ -9,6 +9,21 @@ export const publicRoutes = [
 	"/auth/new-verification"
 ];
 
+export const publicRoutesWithPublication = [
+	'/posts'
+];
+
+export const publicRoutesWithBlog = '/posts';
+
+
+/** 
+* Массив маршрутов, доступных для общего пользования
+* Эти маршруты не требуют аутентификации
+* @type {string[]}
+*/
+
+
+
 /**
 * Массив маршрутов, которые используются для аутентификации
 * Эти маршруты будут перенаправлять зарегистрированных пользователей в /settings
@@ -33,7 +48,9 @@ export const apiAuthPrefix = '/api/auth';
 
 
 export const apiPrefix = [
-	'/api/categories'
+	'/api/categories',
+	'/api/posts',
+	'/api/comments',
 ];
 
 
@@ -42,4 +59,4 @@ export const apiPrefix = [
 * @type {string}
 */
 
-export const DEFAULT_LOGIN_REDIRECT = '/settings';
+export const DEFAULT_LOGIN_REDIRECT = '/profile';

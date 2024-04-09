@@ -102,7 +102,6 @@ model Post {
     categoryId   String
     categorySlug String
     category     Category  @relation(fields: [categoryId], references: [id])
-    comments     Comment[]
 }
 
 model Comment {
@@ -111,5 +110,4 @@ model Comment {
     description String
     userId      String
     postSlug    String
-    post        Post     @relation(fields: [postSlug], references: [slug])
 }

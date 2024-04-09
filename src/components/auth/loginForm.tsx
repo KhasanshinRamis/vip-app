@@ -76,101 +76,103 @@ export const LoginForm = () => {
 
 
 	return (
-		<CardWrapper
-			headerLabel='Welcome back'
-			backButtonLabel='Don`t have an account?'
-			backButtonHref='/auth/register'
-			showSocial
-		>
-			<Form {...form}>
-				<form
-					onSubmit={form.handleSubmit(onSubmit)}
-					className='space-y-6'
-				>
-					<div className='space-y-4'>
-						{showTwoFactor && (
-							<>
-								<FormField
-									control={form.control}
-									name='code'
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Two Factor Code</FormLabel>
-											<FormControl>
-												<Input
-													{...field}
-													disabled={mutation.isPending}
-													placeholder='123456'
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</>
-						)}
-						{!showTwoFactor && (
-							<>
-								<FormField
-									control={form.control}
-									name='email'
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Email</FormLabel>
-											<FormControl>
-												<Input
-													{...field}
-													disabled={mutation.isPending}
-													placeholder='ivanovivan@example.com'
-													type='email'
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name='password'
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Password</FormLabel>
-											<FormControl>
-												<Input
-													{...field}
-													disabled={mutation.isPending}
-													placeholder='******'
-													type='password'
-												/>
-											</FormControl>
-											<Button
-												size='sm'
-												variant='link'
-												asChild
-												className='px-0 font-normal'
-											>
-												<Link href='/auth/reset'>
-													Forgot password?
-												</Link>
-											</Button>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</>
-						)}
-					</div>
-					<FormError message={errorMessage || urlError} />
-					<FormSuccess message={success} />
-					<Button
-						type='submit'
-						disabled={mutation.isPending}
-						className='w-full'
+		<div className='grid min-h-screen justify-center items-center'>
+			<CardWrapper
+				headerLabel='С возвращением'
+				backButtonLabel='У вас нет учетной записи?'
+				backButtonHref='/auth/register'
+				showSocial
+			>
+				<Form {...form}>
+					<form
+						onSubmit={form.handleSubmit(onSubmit)}
+						className='space-y-6'
 					>
-						{showTwoFactor ? 'Confirm' : 'Login'}
-					</Button>
-				</form>
-			</Form>
-		</CardWrapper>
+						<div className='space-y-4'>
+							{showTwoFactor && (
+								<>
+									<FormField
+										control={form.control}
+										name='code'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Two Factor Code</FormLabel>
+												<FormControl>
+													<Input
+														{...field}
+														disabled={mutation.isPending}
+														placeholder='123456'
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</>
+							)}
+							{!showTwoFactor && (
+								<>
+									<FormField
+										control={form.control}
+										name='email'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Email</FormLabel>
+												<FormControl>
+													<Input
+														{...field}
+														disabled={mutation.isPending}
+														placeholder='ivanovivan@example.com'
+														type='email'
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name='password'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Пароль</FormLabel>
+												<FormControl>
+													<Input
+														{...field}
+														disabled={mutation.isPending}
+														placeholder='******'
+														type='password'
+													/>
+												</FormControl>
+												<Button
+													size='sm'
+													variant='link'
+													asChild
+													className='px-0 font-normal'
+												>
+													<Link href='/auth/reset'>
+														Забыли пароль?
+													</Link>
+												</Button>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</>
+							)}
+						</div>
+						<FormError message={errorMessage || urlError} />
+						<FormSuccess message={success} />
+						<Button
+							type='submit'
+							disabled={mutation.isPending}
+							className='w-full'
+						>
+							{showTwoFactor ? 'Подтвердить' : 'Войти'}
+						</Button>
+					</form>
+				</Form>
+			</CardWrapper>
+		</div>
 	);
 };

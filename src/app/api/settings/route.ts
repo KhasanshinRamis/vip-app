@@ -16,13 +16,13 @@ export const PUT = async (req: NextRequest) => {
 		const user = await currentUser();
 
 		if (!user) {
-			return NextResponse.json({ error: 'Unauthorized!' }, { status: 401, statusText: 'Unathorized!' });
+			return NextResponse.json({ error: 'Неавторизованный!' }, { status: 401, statusText: 'Unathorized!' });
 		}
 
 		const dbUser = await getUserById(user.id);
 
 		if (!dbUser) {
-			return NextResponse.json({ error: 'Unauthorized!' }, { status: 401, statusText: 'Unathorized!' });
+			return NextResponse.json({ error: 'Неавторизованный!' }, { status: 401, statusText: 'Unathorized!' });
 		}
 
 
@@ -37,13 +37,13 @@ export const PUT = async (req: NextRequest) => {
 			const existingUser = await getUserByEmail(body.email);
 
 			if (existingUser && existingUser.id !== user.id) {
-				return NextResponse.json({ error: 'Email already in use!' }, { status: 401, statusText: 'Email already in use!' });
+				return NextResponse.json({ error: 'Электронная почта уже используется!' }, { status: 401, statusText: 'Email already in use!' });
 			}
 
 			const verificationToken = await generateVerificationToken(body.email);
 			await sendVerificationEmail(verificationToken.email, verificationToken.token);
 
-			return NextResponse.json({success: 'Verification email sent!'}, { status: 200, statusText: 'Verification email sent!' });
+			return NextResponse.json({success: 'Подтвердить через email!'}, { status: 200, statusText: 'Verification email sent!' });
 
 		}
 
@@ -54,7 +54,7 @@ export const PUT = async (req: NextRequest) => {
 			);
 
 			if (!passwordMatch) {
-				return NextResponse.json({ error: 'Incorrect password!' }, { status: 401, statusText: 'Incorrect password!' });
+				return NextResponse.json({ error: 'Неверный пароль!' }, { status: 401, statusText: 'Incorrect password!' });
 			}
 
 			const hashedPassword = await bcrypt.hash(body.newPassword, 10);
@@ -71,7 +71,7 @@ export const PUT = async (req: NextRequest) => {
 		});
 
 
-		return NextResponse.json({success: 'Settings Uptadted!' }, { status: 200, statusText: 'Settings Uptadted!' });
+		return NextResponse.json({success: 'Данные пользователя обновлены!' }, { status: 200, statusText: 'Settings Uptadted!' });
 	} catch (error: any) {
 		return NextResponse.json(error.message, { status: 500, statusText: error.message });
 	}
