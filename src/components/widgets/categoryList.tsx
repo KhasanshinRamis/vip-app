@@ -30,7 +30,7 @@ export const CategoryList = () => {
 				{Array.isArray(categoriesData) && categoriesData.map((category: ICategory) => (
 					<Link
 						key={category.id}
-						href={`/blog?category=${category.slug}`}
+						href={`/blog?category=${category.title}`}
 						className={cn(styles[category.slug], 'grid grid-cols-[32px_1fr] gap-x-2 justify-center items-center text-center h-[60px] capitalize rounded-[10px] shadow-md pl-2 text-indigo-950')}
 					>
 						{category.img &&

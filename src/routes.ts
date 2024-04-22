@@ -5,15 +5,15 @@
 */
 
 export const publicRoutes = [
+
+	"/auth/new-verification",
 	'/',
-	"/auth/new-verification"
 ];
 
-export const publicRoutesWithPublication = [
-	'/posts'
-];
+export const publicPostRoutes = '/posts';
 
-export const publicRoutesWithBlog = '/posts';
+
+export const publicBlogRoutes = '/posts';
 
 
 /** 
@@ -44,15 +44,19 @@ export const authRoutes = [
 * @type {string}
 */
 
-export const apiAuthPrefix = '/api/auth';
+export const apiAuthPrefix = '/api';
 
 
 export const apiPrefix = [
 	'/api/categories',
 	'/api/posts',
+	'/api/blog',
 	'/api/comments',
 ];
 
+export const apiPost = '/api/posts'
+
+export const apiBlog = '/api/blog';
 
 /**
 * Путь перенаправления по умолчанию после входа в систему

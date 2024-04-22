@@ -75,13 +75,17 @@ export const {
 
 			return session;
 		},
-		async jwt({ token }) {
+		async jwt({ token, trigger, session }) {
 
 			if (!token.sub) return token;
 
 			const existingUser = await getUserById(token.sub);
 
 			if (!existingUser) return token;
+
+			if (trigger === "update" && session?.user?.name) {
+				token.name = session.user.name
+			}
 
 			const existingAccount = await getAccountByUserId(existingUser.id);
 

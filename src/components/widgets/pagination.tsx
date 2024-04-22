@@ -7,7 +7,7 @@ interface PaginationProps {
 	hasNext: boolean;
 }
 
-export const Pagination = ({ page, hasPrev, hasNext, ...props }: PaginationProps) => {
+export const Pagination = ({ page, hasPrev, hasNext }: PaginationProps) => {
 	const router = useRouter();
 
 	return (

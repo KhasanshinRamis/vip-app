@@ -30,7 +30,7 @@ export default function SinglePage({ params }: any) {
 			)}
 			{isSuccess && (
 				<>
-					<div className='grid grid-flow-row grid-cols-2 2xl:grid-cols-1 gap-[20px] items-center'>
+					<div className='grid grid-flow-row grid-cols-2 xl:grid-cols-1 gap-[20px] items-center'>
 						<div>
 							<h1 className='text-2xl text-white text-primary text-center font-semibold mb-12'>{postData?.post?.title}</h1>
 							<div className='2xl:grid 2xl:grid-flow-col 2xl:grid-cols-[1fr_62px] 2xl:items-center'>

@@ -1,6 +1,6 @@
 import authConfig from "@/auth.config";
 import NextAuth from 'next-auth';
-import { DEFAULT_LOGIN_REDIRECT, apiAuthPrefix, apiPrefix, authRoutes, publicRoutes, publicRoutesWithPublication, publicRoutesWithBlog } from '@/routes';
+import { DEFAULT_LOGIN_REDIRECT, apiAuthPrefix, apiBlog, apiPost, apiPrefix, authRoutes, publicBlogRoutes, publicPostRoutes, publicRoutes, } from '@/routes';
 import { NextResponse } from 'next/server';
 
 
@@ -15,13 +15,15 @@ export default auth((req) => {
 
 	// не нужно защищать айпи запросы
 	const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+	const isApiPublicPosts = nextUrl.pathname.startsWith(apiPost);
+	const isApiPublicBlog = nextUrl.pathname.startsWith(apiBlog);
 	const isApiRoute = apiPrefix.includes(nextUrl.pathname);
+	const isPublicPostsRoute = nextUrl.pathname.startsWith(publicPostRoutes);
 	const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
-	const isPublicRoutesWithPublication = publicRoutesWithPublication.includes(nextUrl.pathname);
-	const isPublicRoutesWithBlog = nextUrl.pathname.startsWith(publicRoutesWithBlog);
+	const isBlogRoute = publicBlogRoutes.includes(nextUrl.pathname);
 	const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-	if (isApiAuthRoute || isApiRoute) {
+	if (isApiAuthRoute || isApiPublicPosts || isApiRoute || isApiPublicBlog) {
 		return NextResponse.next();
 	};
 
@@ -31,7 +33,7 @@ export default auth((req) => {
 		return NextResponse.next();
 	};
 
-	if (!isLoggedIn && !isPublicRoute && isPublicRoutesWithPublication && isPublicRoutesWithBlog) {
+	if (!isLoggedIn && !isPublicRoute && !isPublicPostsRoute && !isBlogRoute) {
 		let callbackUrl = nextUrl.pathname;
 
 		if (nextUrl.search) {

@@ -5,14 +5,15 @@ export interface IPost {
 	posts: any;
 	count: any;
 	id: string;
-    createdAt: string;
-    slug: string;
-    title: string;
-    description: string;
-    img?: string;
-    views: number;
-    categorySlug: string;
+	createdAt: Date;
+	slug: string;
+	title: string;
+	description: string;
+	img?: string;
+	views: number;
+	categorySlug: string;
 	userEmail: string;
+	page: number;
 	user: IUser;
 	comments: IComment[];
 }

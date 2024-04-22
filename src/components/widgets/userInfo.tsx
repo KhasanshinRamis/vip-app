@@ -1,6 +1,7 @@
 import { ExtendedUser } from '../../../next-auth'
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useRouter } from 'next/navigation';
 
 interface UserInfoProps {
 	user?: ExtendedUser;
@@ -8,6 +9,10 @@ interface UserInfoProps {
 }
 
 export const UserInfo = ({ user, label }: UserInfoProps) => {
+
+	const router = useRouter();
+
+	if (user?.id === null) router.refresh();
 	return (
 		<div className='grid justify-center items-center min-h-screen'>
 			<Card className='w-[600px] md:w-[450px] sm:w-[300px] shadow-md'>

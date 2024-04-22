@@ -54,7 +54,7 @@ export const POST = async (req: NextRequest) => {
 				data: {
 					userId: user.id,
 					categoryId: catSlug?.id,
-					categorySlug: catSlug?.slug,
+					categorySlug: catSlug?.title,
 					slug: body.slug,
 					title: body.title,
 					description: body.description,
