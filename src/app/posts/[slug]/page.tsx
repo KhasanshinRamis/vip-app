@@ -33,7 +33,7 @@ export default function SinglePage({ params }: any) {
 					<div className='grid grid-flow-row grid-cols-2 xl:grid-cols-1 gap-[20px] items-center'>
 						<div>
 							<h1 className='text-2xl text-white text-primary text-center font-semibold mb-12'>{postData?.post?.title}</h1>
-							<div className='2xl:grid 2xl:grid-flow-col 2xl:grid-cols-[1fr_62px] 2xl:items-center'>
+							<div className='2xl:grid 2xl:grid-flow-col 2xl:grid-cols-[1fr_120px] 2xl:items-center'>
 								<div className='grid grid-flow-col grid-cols-[50px_1fr] gap-x-2 mb-4'>
 									<div className='relative h-[50px] w-[50px]'>
 										{postData?.user?.image && <Image src={postData?.user?.image} alt={postData?.user?.name} fill className='object-cover rounded-[50%]' />}

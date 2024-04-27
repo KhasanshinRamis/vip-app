@@ -71,7 +71,7 @@ export default function SettingsPage() {
 	};
 
 	return (
-		<div className='grid items-center justify-center min-h-screen'>
+		<div className='grid items-center justify-center min-h-screen py-4'>
 			<Card className='w-[600px] md:w-[450px] sm:w-[300px]'>
 				<CardHeader>
 					<p className='text-2xl font-semibold text-center'>
