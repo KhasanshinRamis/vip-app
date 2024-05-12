@@ -11,7 +11,7 @@ export interface IPost {
 	description: string;
 	img?: string;
 	views: number;
-	categorySlug: string;
+	categorySlug: "style" | "fashion" | "food" | "culture" | "travel" | "coding";
 	userEmail: string;
 	page: number;
 	user: IUser;

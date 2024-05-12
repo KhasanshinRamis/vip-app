@@ -1,29 +1,21 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.bubble.css';
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormItem, FormLabel, FormMessage, FormField } from '@/components/ui/form';
-import { FormError } from '@/components/formError';
-import { FormSuccess } from '@/components/formSuccess';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { FaFileImage } from "react-icons/fa";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NewPostSchema } from '@/schemas';
-import {
-	getStorage,
-	ref,
-	uploadBytesResumable,
-	getDownloadURL,
-} from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import * as z from 'zod';
 import { useEffect, useState } from 'react';
 import postService from '@/services/postService';
 import { app } from '@/config/firebase';
-
+import { toast } from 'sonner';
+import { Tiptap } from '@/components/ui/tiptap';
 
 
 export default function WritePage() {
@@ -33,8 +25,6 @@ export default function WritePage() {
 	const [file, setFile] = useState<Blob | Uint8Array | ArrayBuffer>();
 	const [disabledFromMedia, setDisabledFromMedia] = useState<boolean>(false);
 
-	const [success, setSuccess] = useState<string | undefined>('');
-	const [errorMessage, setErrorMessage] = useState<string | undefined>('');
 
 	useEffect(() => {
 		const storage = getStorage(app);
@@ -86,12 +76,13 @@ export default function WritePage() {
 		onSuccess: (data: any) => {
 			console.log('Success!', data);
 			console.log(data.success);
-			setSuccess('Новая запись создана!');
+			toast.success('Новая запись создана!');
 			queryClient.invalidateQueries({ queryKey: ['new-post'] });
+			form.reset();
 		},
 		onError: (error: any) => {
 			console.log(error.message);
-			setErrorMessage(error.response.data.error);
+			toast.error(error.response.data.error);
 			queryClient.invalidateQueries({ queryKey: ['new-post'] });
 		}
 	});
@@ -120,7 +111,7 @@ export default function WritePage() {
 		<div className='min-h-screen'>
 			<Form {...form}>
 				<form
-					className='grid grid-rows-[64px_36px_32px_1fr_36px] gap-y-8 px-24 sm:px-4 py-6 h-full'
+					className='grid gap-y-3 px-24 sm:px-4 py-3 h-full'
 					onSubmit={form.handleSubmit(onSubmit)}
 				>
 					<FormField
@@ -218,21 +209,15 @@ export default function WritePage() {
 						render={({ field }) => (
 							<FormItem>
 								<FormControl>
-									<ReactQuill
-										{...field}
-										theme='bubble'
-										placeholder='Расскажи свою историю...'
-										className='[&>div>div>p]:text-base [&>div>div>p]:text-white [&>div>div>p]:placeholder:text-white placeholder:[&>div>div>p]:text-2xl md:placeholder:[&>div>div>p]:text-lg [&>div>div>h1]:text-white  [&>div>div>h1]:text-text-3xl md:placeholder:[&>div>div>h1]:text-xl [&>div>div>h2]:text-white [&>div>div>h2]:text-xl [&>div>div>ol>li]:text-base [&>div>div>ol>li]:text-white'
+									<Tiptap
+										className='text-white max-w-vh text-wrap'
+										onChange={field.onChange}
 									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
 						)}
 					/>
-
-
-					<FormError message={errorMessage} />
-					<FormSuccess message={success} />
 					<Button
 						type='submit'
 						className='grid items-end'

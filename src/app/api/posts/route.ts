@@ -49,7 +49,7 @@ export const POST = async (req: NextRequest) => {
 
 
 
-		if (user.id && catSlug?.id) {
+		if (user.id && catSlug?.id ) {
 			post = await db.post.create({
 				data: {
 					userId: user.id,
